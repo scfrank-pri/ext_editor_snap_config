@@ -56,7 +56,7 @@ cp /lib/x86_64-linux-gnu/libc.so.6 ~/snap/thunderbird/common/lib/x86_64-linux-gn
 
 ### 3. Create the Editor Script
 
-Create a script named `em` in `~/snap/thunderbird/common/bin/` ("user" MUST be replaced by your user id). 
+Create a script named `em` in `~/snap/thunderbird/common/bin/` (**"user" MUST be replaced by your user id**). 
 
 ```bash
 #!/bin/bash
@@ -97,6 +97,7 @@ Lastly, copy the files into the snap
 ```bash
 mkdir -p ~/snap/thunderbird/common/.mozilla/native-messaging-hosts/
 cp ~/Downloads/external_editor_revived.json ~/snap/thunderbird/common/.mozilla/native-messaging-hosts/
+chmod go-rwx ~/snap/thunderbird/common/.emacs-server
 cp ~/Downloads/external-editor-revived ~/snap/thunderbird/common/bin/
 ```
 
