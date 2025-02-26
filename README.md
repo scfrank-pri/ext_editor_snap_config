@@ -46,42 +46,20 @@ mkdir -p ~/snap/thunderbird/common/lib64
 mkdir -p ~/snap/thunderbird/common/lib/x86_64-linux-gnu
 ```
 
-2. Copy extended_editor_revived in the snap’s bin folder:
 
-a) Install the Add-on in Thunderbird using the Extension
-manager.
-
-b) Download and install the
-[Native Messaging Host](https://github.com/Frederick888/external-editor-revived/wiki/Linux#installing-the-native-messaging-host),
-(e.g  ubuntu-latest-gnu-native-messaging-host-vXXX.zip)
-
-
-c) Copy extended_messaging_host to snap: 
-
-```bash
-
-
-
-```
-
-
-3. Copy required emacs files:
+2. Copy required emacs files:
 ```bash
 cp /usr/bin/emacsclient.emacs ~/snap/thunderbird/common/bin/emacsclient
-cp /lib64/ld-linux-x86-64.so.2 ~/snap/thunderbird/common/lib64/
+cp /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 ~/snap/thunderbird/common/lib64/
 cp /lib/x86_64-linux-gnu/libc.so.6 ~/snap/thunderbird/common/lib/x86_64-linux-gnu/
 ```
 
 ### 3. Create the Editor Script
 
-Create a script named `em` in `~/snap/thunderbird/common/bin/`:
+Create a script named `em` in `~/snap/thunderbird/common/bin/` ("user" MUST be replaced by your user id). 
 
 ```bash
 #!/bin/bash
-exec 1> >(tee -a /home/user/em.log)
-exec 2> >(tee -a /home/user/em.log >&2)
-echo "=== $(date) ===" >> /home/user/em.log
-echo "Starting with args: $@" >> /home/user/em.log
 
 export LD_LIBRARY_PATH="/home/user/snap/thunderbird/common/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
 export GTK_USE_PORTAL=1
@@ -102,10 +80,33 @@ Make the script executable:
 chmod +x ~/snap/thunderbird/common/bin/em
 ```
 
-## Configuration
+### 4. Install the extended_editor_revived in the snap’s bin folder:
 
-1. In External Editor Revived's settings, choose "Editor": Custom,
-   "Shell": sh, "Command template": 
+#### a) Install the Add-on in Thunderbird using the Extension manager.
+
+#### b) Download and install the [MUSL-Native-Messaging-Host](https://github.com/Frederick888/external-editor-revived/releases)
+
+Example for ubuntu 24.10: (see [wiki](https://github.com/Frederick888/external-editor-revived/wiki/Linux#installing-the-native-messaging-host))
+
+- download ```ubuntu-latest-musl-native-messaging-host-v1.2.0.zip``` to your ```~/Downloads``` folder
+- ```unzip ubuntu-latest-musl-native-messaging-host-v1.2.0.zip```
+- make it executable: ```chmod a+x external-editor-revived```
+- run: ```./external-editor-revived```
+- edit the resulting file ```external_editor_revived.json``` and change: ```"path": "/home/user/Download/external-editor-revived",``` into: ```"path": "/home/user/snap/thunderbird/common/bin/external-editor-revived",```
+
+Lastly, copy the files into the snap
+```bash
+mkdir -p ~/snap/thunderbird/common/.mozilla/native-messaging-hosts/
+cp ~/Downloads/external_editor_revived.json
+~/snap/thunderbird/common/.mozilla/native-messaging-hosts/
+cp ~/Downloads/external-editor-revived ~/snap/thunderbird/common/bin/
+```
+
+
+#### c) Configuration
+
+1. In Thunderbird's Add-on External Editor Revived's settings, choose "Editor": Custom,
+   "Shell": sh, "Command template": (change `user´ into your user id)
 
 ```
 /home/user/snap/thunderbird/common/bin/em "/path/to/temp.eml" 
@@ -116,8 +117,8 @@ Optionally, activate: "Suppress help headers" and "Meta headers"
 2. Restart Thunderbird and Emacs. When composing
    a new message, the Button "External Editor" appears
    in the Thunderbird Message Window (upper right). A click opens the message in an Emacs frame. Finish
-   editing, save the draft (C-s C-f in
-   emacs) and return to Thunderbird (C-x #). 
+   editing, save the draft (`C-s C-f´ in
+   emacs) and return to Thunderbird (`C-x #´). 
 
 ## How It Works
 
