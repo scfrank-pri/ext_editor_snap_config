@@ -62,7 +62,6 @@ Create a script named `em` in `~/snap/thunderbird/common/bin/` ("user" MUST be r
 #!/bin/bash
 
 export LD_LIBRARY_PATH="/home/user/snap/thunderbird/common/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
-export GTK_USE_PORTAL=1
 
 input_file="$1"
 if [ -z "$input_file" ]; then
@@ -82,9 +81,9 @@ chmod +x ~/snap/thunderbird/common/bin/em
 
 ### 4. Install the extended_editor_revived in the snap’s bin folder:
 
-#### a) Install the Add-on in Thunderbird using the Extension manager.
+##### a) Install the Add-on in Thunderbird using the Extension manager.
 
-#### b) Download and install the [MUSL-Native-Messaging-Host](https://github.com/Frederick888/external-editor-revived/releases)
+##### b) Download and install the [MUSL-Native-Messaging-Host](https://github.com/Frederick888/external-editor-revived/releases)
 
 Example for ubuntu 24.10: (see [wiki](https://github.com/Frederick888/external-editor-revived/wiki/Linux#installing-the-native-messaging-host))
 
@@ -106,7 +105,7 @@ cp ~/Downloads/external-editor-revived ~/snap/thunderbird/common/bin/
 #### c) Configuration
 
 1. In Thunderbird's Add-on External Editor Revived's settings, choose "Editor": Custom,
-   "Shell": sh, "Command template": (change `user´ into your user id)
+   "Shell": sh, "Command template": (change `user` into your user id)
 
 ```
 /home/user/snap/thunderbird/common/bin/em "/path/to/temp.eml" 
@@ -117,8 +116,8 @@ Optionally, activate: "Suppress help headers" and "Meta headers"
 2. Restart Thunderbird and Emacs. When composing
    a new message, the Button "External Editor" appears
    in the Thunderbird Message Window (upper right). A click opens the message in an Emacs frame. Finish
-   editing, save the draft (`C-s C-f´ in
-   emacs) and return to Thunderbird (`C-x #´). 
+   editing, save the draft (`C-s C-f` in
+   emacs) and return to Thunderbird (`C-x #`). 
 
 ## How It Works
 
@@ -129,7 +128,6 @@ The solution works by:
 
 ## Troubleshooting
 
-- Check em.log in your home directory for debugging information
 - Verify that Emacs server is running: In Emacs, evaluate `(server-running-p)`
 - Ensure all paths in the scripts match your system's username and directory structure
 
@@ -138,6 +136,4 @@ The solution works by:
 This solution was developed with the assistance of Claude (Anthropic) in February 2025. The debugging process and final implementation were the result of an interactive problem-solving session with the AI assistant.
 
 ## License
-
-MIT License
-MIT Licence
+none
