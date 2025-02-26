@@ -56,7 +56,7 @@ cp /lib/x86_64-linux-gnu/libc.so.6 ~/snap/thunderbird/common/lib/x86_64-linux-gn
 
 ### 3. Create the Editor Script
 
-Create a script named `em` in `~/snap/thunderbird/common/bin/` (**"user" MUST be replaced by your user id**). 
+Create a script named `em` in `~/snap/thunderbird/common/bin/` (**"user" MUST be replaced by your user id**) 
 
 ```bash
 #!/bin/bash
@@ -91,7 +91,7 @@ Example for ubuntu 24.10: (see [wiki](https://github.com/Frederick888/external-e
 - ```unzip ubuntu-latest-musl-native-messaging-host-v1.2.0.zip```
 - make it executable: ```chmod a+x external-editor-revived```
 - run: ```./external-editor-revived```
-- edit the resulting file ```external_editor_revived.json``` and change: ```"path": "/home/user/Download/external-editor-revived",``` into: ```"path": "/home/user/snap/thunderbird/common/bin/external-editor-revived",```
+- edit the resulting file ```external_editor_revived.json``` and change: ```"path": "/home/user/Download/external-editor-revived",``` into: ```"path": "/home/user/snap/thunderbird/common/bin/external-editor-revived",``` (**"user" MUST be replaced by your user id**)
 
 Lastly, copy the files into the snap
 ```bash
@@ -105,7 +105,7 @@ cp ~/Downloads/external-editor-revived ~/snap/thunderbird/common/bin/
 ##### c) Configuration
 
 1. In Thunderbird's Add-on External Editor Revived's settings, choose "Editor": Custom,
-   "Shell": sh, "Command template": (change `user` into your user id)
+   "Shell": sh, "Command template": (**"user" MUST be replaced by your user id**)
 
 ```
 /home/user/snap/thunderbird/common/bin/em "/path/to/temp.eml" 
