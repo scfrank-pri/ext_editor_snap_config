@@ -96,13 +96,12 @@ Example for ubuntu 24.10: (see [wiki](https://github.com/Frederick888/external-e
 Lastly, copy the files into the snap
 ```bash
 mkdir -p ~/snap/thunderbird/common/.mozilla/native-messaging-hosts/
-cp ~/Downloads/external_editor_revived.json
-~/snap/thunderbird/common/.mozilla/native-messaging-hosts/
+cp ~/Downloads/external_editor_revived.json ~/snap/thunderbird/common/.mozilla/native-messaging-hosts/
 cp ~/Downloads/external-editor-revived ~/snap/thunderbird/common/bin/
 ```
 
 
-#### c) Configuration
+##### c) Configuration
 
 1. In Thunderbird's Add-on External Editor Revived's settings, choose "Editor": Custom,
    "Shell": sh, "Command template": (change `user` into your user id)
